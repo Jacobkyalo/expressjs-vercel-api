@@ -43,6 +43,17 @@ app.post("/api/tasks", async (req, res) => {
   });
 });
 
+app.delete("/api/tasks/:id", async (req, res) => {
+  const { id } = req.params;
+
+  await Task.findByIdAndDelete(id);
+
+  res.status(200).json({
+    status: "success",
+    message: "Task deleted successfully",
+  });
+});
+
 // connect to mongodb
 const connectDB = async () => {
   try {
